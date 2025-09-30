@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Página simple</title>
+  <style>
+    :root{--bg:#f7f9fc;--card:#fff;--accent:#2563eb;--text:#0f172a}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;background:var(--bg);color:var(--text);line-height:1.4}
+    header{background:linear-gradient(90deg,#eef2ff,#f8fafc);padding:20px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{font-weight:700;letter-spacing:0.3px}
+    nav a{margin-left:12px;text-decoration:none;color:var(--accent)}
+    main{max-width:900px;margin:28px auto;padding:0 16px}
+    .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(15,23,42,0.06);margin-bottom:16px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+    button{background:var(--accent);color:white;border:0;padding:10px 14px;border-radius:8px;cursor:pointer}
+    input,textarea,select{width:100%;padding:10px;border:1px solid #e6eef8;border-radius:8px}
+    footer{max-width:900px;margin:12px auto 40px;padding:0 16px;color:#64748b}
+    .muted{color:#64748b;font-size:0.95rem}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">Mi sitio simple</div>
+    <nav>
+      <a href="#">Inicio</a>
+      <a href="#features">Características</a>
+      <a href="#contact">Contacto</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="card">
+      <h1>Bienvenido 👋</h1>
+      <p class="muted">Este es un ejemplo de página HTML simple, lista para usar como plantilla o para aprender.</p>
+      <p>Incluye estilos mínimos, una disposición responsiva y un formulario de contacto.</p>
+    </section>
+
+    <section id="features" class="grid">
+      <div class="card">
+        <h3>Ligera</h3>
+        <p class="muted">HTML + CSS mínimo para cargar rápido.</p>
+      </div>
+      <div class="card">
+        <h3>Responsiva</h3>
+        <p class="muted">Se adapta a móviles y escritorio con una simple rejilla CSS.</p>
+      </div>
+      <div class="card">
+        <h3>Fácil de personalizar</h3>
+        <p class="muted">Cambia colores, tipografías o añade más secciones según necesites.</p>
+      </div>
+    </section>
+
+    <section id="contact" class="card">
+      <h2>Contacto</h2>
+      <form id="contactForm">
+        <label>Nombre</label>
+        <input type="text" id="name" placeholder="Tu nombre" required>
+
+        <label>Correo</label>
+        <input type="email" id="email" placeholder="tu@correo.com" required>
+
+        <label>Mensaje</label>
+        <textarea id="message" rows="4" placeholder="Escribe tu mensaje"></textarea>
+
+        <div style="display:flex;gap:8px;margin-top:12px">
+          <button type="submit">Enviar</button>
+          <button type="button" id="clearBtn">Limpiar</button>
+        </div>
+
+        <p id="status" class="muted" style="margin-top:10px;"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <div class="muted">© 2025 — Página simple de ejemplo. Puedes reutilizar este archivo.</div>
+  </footer>
+
+  <script>
+    const form = document.getElementById('contactForm');
+    const status = document.getElementById('status');
+    const clearBtn = document.getElementById('clearBtn');
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      if(!name || !email){
+        status.textContent = 'Por favor completa nombre y correo.';
+        return;
+      }
+      status.textContent = 'Gracias, tu mensaje fue enviado (simulado).';
+      form.reset();
+    });
+
+    clearBtn.addEventListener('click', () => { form.reset(); status.textContent = ''; });
+  </script>
+</body>
+</html>
